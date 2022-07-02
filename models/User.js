@@ -25,8 +25,6 @@ const userSchema = new Schema({
 		unique: true,
 		match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/],
 	},
-	// these are the replies to the thoughts, array
-	reactions: [reactionSchema],
 	toJSON: {
 		virtuals: true,
 		getters: true,
