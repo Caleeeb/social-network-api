@@ -27,6 +27,7 @@ const thoughtSchema = new Schema({
 
 // TODO: reactions (replies)
 
+// create the Thought model using the thoughtSchema
 const Thought = model("Thought", thoughtSchema);
 
 module.exports = Thought;

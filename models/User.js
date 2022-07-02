@@ -33,6 +33,8 @@ const userSchema = new Schema({
 });
 
 // TODO: friend count
+
+// create the User model using the userSchema
 const User = model("User", userSchema);
 
 module.exports = User;
