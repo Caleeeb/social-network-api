@@ -26,6 +26,30 @@ const thoughtSchema = new Schema({
 });
 
 // TODO: reactions (replies)
+const reactionSchema = new Schema({
+	reactionText: {
+		type: String,
+		required: true,
+		maxlength: 280,
+	},
+	reactionId: {
+		type: Schema.Types.ObjectId,
+		default: () => new Types.ObjectId(),
+	},
+	username: {
+		type: String,
+		required: true,
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now,
+		// use moment instead?
+		get: (createdAtVal) => dateFormat(createdAtVal),
+	},
+	toJSON: {
+		getters: true,
+	},
+});
 
 // create the Thought model using the thoughtSchema
 const Thought = model("Thought", thoughtSchema);

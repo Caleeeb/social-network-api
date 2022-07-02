@@ -25,6 +25,8 @@ const userSchema = new Schema({
 		unique: true,
 		match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/],
 	},
+	// these are the replies to the thoughts, array
+	reactions: [reactionSchema],
 	toJSON: {
 		virtuals: true,
 		getters: true,
@@ -32,7 +34,10 @@ const userSchema = new Schema({
 	id: false,
 });
 
-// TODO: friend count
+//  friend count
+UserSchema.virtual("friendCount").get(function () {
+	return this.friends.length;
+});
 
 // create the User model using the userSchema
 const User = model("User", userSchema);
