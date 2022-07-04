@@ -1,35 +1,5 @@
 const { Schema, model, Types } = require("mongoose");
-const dateFormat = require("../utils/dateFormat");
-
-const thoughtSchema = new Schema(
-	{
-		thoughtText: {
-			type: String,
-			minlength: 1,
-			maxlength: 280,
-			required: true,
-		},
-		username: {
-			type: String,
-			required: true,
-		},
-		createdAt: {
-			type: Date,
-			default: Date.now,
-			// use moment instead?
-			get: (createdAtVal) => dateFormat(createdAtVal),
-		},
-		// these are the replies to the thoughts, array
-		reactions: [reactionSchema],
-	},
-	{
-		toJSON: {
-			virtuals: true,
-			getters: true,
-		},
-		id: false,
-	}
-);
+const moment = require("moment");
 
 // TODO: reactions (replies)
 const reactionSchema = new Schema(
@@ -51,7 +21,7 @@ const reactionSchema = new Schema(
 			type: Date,
 			default: Date.now,
 			// use moment instead?
-			get: (createdAtVal) => dateFormat(createdAtVal),
+			get: (createdAtVal) => moment(createdAtVal).format("MM DD, YYY hh:mm a"),
 		},
 	},
 	{
@@ -62,7 +32,36 @@ const reactionSchema = new Schema(
 	}
 );
 
-ThoughtSchema.virtual("reactionCount").get(function () {
+const thoughtSchema = new Schema(
+	{
+		thoughtText: {
+			type: String,
+			minlength: 1,
+			maxlength: 280,
+			required: true,
+		},
+		username: {
+			type: String,
+			required: true,
+		},
+		createdAt: {
+			type: Date,
+			default: Date.now,
+			// used moment
+			get: (createdAtVal) => moment(createdAtVal).format("MM DD, YYY hh:mm a"),
+		},
+		// these are the replies to the thoughts, array
+		reactions: [reactionSchema],
+	},
+	{
+		toJSON: {
+			virtuals: true,
+			getters: true,
+		},
+	}
+);
+
+thoughtSchema.virtual("reactionCount").get(function () {
 	return this.reactions.length;
 });
 
