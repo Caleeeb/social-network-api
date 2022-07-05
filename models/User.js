@@ -17,7 +17,7 @@ const userSchema = new Schema(
 		friends: [
 			{
 				type: Schema.Types.ObjectId,
-				ref: "Thought",
+				ref: "User",
 			},
 		],
 		email: {

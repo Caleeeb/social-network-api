@@ -22,9 +22,9 @@ This is the back end code for a future comment and response social media site.
 
 Videos of the application in action:
 
-[User Routes]()
+[User/Friend Routes](https://drive.google.com/file/d/1n8JH2iikzqOabDGzV83kHyIGHbVheeNo/view)
 
-[Thought Routes]()
+[Thought/Reaction Routes](https://drive.google.com/file/d/17mI6UuQFqNqwA_a6ar5AuVV19Sn-RhRO/view)
 
 <p style='text-align: right;'><a href='#title'>Back to top</a></p>
 
